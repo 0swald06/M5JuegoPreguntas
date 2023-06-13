@@ -1,12 +1,19 @@
 package com.example.m5juegopreguntas;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+
+import com.example.m5juegopreguntas.databinding.FragmentQuestionBinding;
+import com.example.m5juegopreguntas.databinding.FragmentStartBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -15,6 +22,7 @@ import android.view.ViewGroup;
  */
 public class StartFragment extends Fragment {
 
+  private   FragmentStartBinding mBinding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +67,29 @@ public class StartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_start, container, false);
+        mBinding = FragmentStartBinding.inflate(inflater,container,false);
+
+        mBinding.button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.starFragment, QuestionFragment.newInstance("Hola","Hola"));
+                fragmentTransaction.commit();
+                ocultar();
+                mBinding.button.setVisibility(View.GONE);
+                mBinding.name.setVisibility(View.GONE);
+                mBinding.inicio.setVisibility(View.GONE);
+            }
+        });
+        return mBinding.getRoot();
+    }
+    public void ocultar(){
+        View vieww = getActivity().getCurrentFocus();
+        if(vieww != null){
+            //Aquí esta la magia
+            InputMethodManager input = (InputMethodManager) (getActivity().getSystemService(Context.INPUT_METHOD_SERVICE));
+            input.hideSoftInputFromWindow(vieww.getWindowToken(), 0);
+        }
     }
 }

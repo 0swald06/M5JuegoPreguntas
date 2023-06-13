@@ -5,7 +5,11 @@ plugins {
 android {
     namespace 'com.example.m5juegopreguntas'
     compileSdk 33
+    buildFeatures{
 
+        viewBinding=true
+
+    }
     defaultConfig {
         applicationId "com.example.m5juegopreguntas"
         minSdk 24

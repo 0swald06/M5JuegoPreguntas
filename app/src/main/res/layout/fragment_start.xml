@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartFragment"
-    android:orientation="vertical">
+    tools:context=".StartFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
+    <LinearLayout
+        android:id="@+id/starFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <TextView
+        android:id="@+id/inicio"
         android:layout_width="match_parent"
         android:layout_height="77dp"
+        android:layout_marginTop="29dp"
         android:gravity="center"
         android:text="Bienvenido al juego, ingrese su nombre para comenzar"
         android:textColor="#632165"
         android:textSize="24sp" />
 
-    <com.google.android.material.textfield.TextInputLayout
-
-        android:id="@+id/InputMesaje"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/name"
+        android:contentDescription="nombre"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/EditMensaje"
-            android:layout_width="226dp"
-            android:layout_height="41dp"
-            android:layout_gravity="center"
-            android:contentDescription="nombre"
-            android:gravity="center"
-            android:hint="Ingrese su nombre" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:hint="Ingrese nombre" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="450dp"
-        android:foregroundGravity="center_horizontal"
-        android:gravity="center_vertical"
-        android:text="Button" />
+        android:layout_marginTop="35dp"
+        android:text="Start" />
+    </LinearLayout>
+</FrameLayout>
 
-</LinearLayout>
+
+
+
+
+
+
