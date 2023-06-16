@@ -9,60 +9,68 @@
     android:id="@+id/fragmentQuestion">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/bienvenido"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="77dp"
+        android:layout_marginTop="29dp"
+        android:gravity="center"
+        android:textColor="#632165"
+        android:textSize="24sp" />
+
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="101dp"
+        android:src="@drawable/facebook_f_logo__2019__svg" />
 
     <RadioGroup
+        android:id="@+id/radiogroup"
         android:layout_width="match_parent"
-        android:layout_height="436dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="359dp"
         android:gravity="center">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="77dp"
-            android:layout_marginTop="29dp"
+            android:layout_marginTop="9dp"
             android:gravity="center"
             android:text="A que logo pertenece la imagen?"
             android:textColor="#632165"
             android:textSize="24sp" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/rbFace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="RadioButton" />
+            android:text="Facebook" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/rbi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Instagram" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/rbw"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Whatsapp" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/rbt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="Telegram" />
     </RadioGroup>
+
     <Button
         android:id="@+id/button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
         android:text="Start" />
 </LinearLayout>

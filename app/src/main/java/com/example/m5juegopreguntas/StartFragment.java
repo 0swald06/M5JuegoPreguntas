@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
-import com.example.m5juegopreguntas.databinding.FragmentQuestionBinding;
 import com.example.m5juegopreguntas.databinding.FragmentStartBinding;
 
 /**
@@ -23,6 +22,7 @@ import com.example.m5juegopreguntas.databinding.FragmentStartBinding;
 public class StartFragment extends Fragment {
 
   private   FragmentStartBinding mBinding;
+  String etname;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -72,6 +72,7 @@ public class StartFragment extends Fragment {
         mBinding.button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                etname = mBinding.name.getText().toString().trim();
                 FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.starFragment, QuestionFragment.newInstance("Hola","Hola"));
@@ -80,6 +81,9 @@ public class StartFragment extends Fragment {
                 mBinding.button.setVisibility(View.GONE);
                 mBinding.name.setVisibility(View.GONE);
                 mBinding.inicio.setVisibility(View.GONE);
+                Bundle bundle = new Bundle();
+                bundle.putString("name",etname);
+                getParentFragmentManager().setFragmentResult("key",bundle);
             }
         });
         return mBinding.getRoot();

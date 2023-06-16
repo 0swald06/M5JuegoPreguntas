@@ -2,14 +2,22 @@ package com.example.m5juegopreguntas;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.m5juegopreguntas.databinding.FragmentQuestionBinding;
-import com.example.m5juegopreguntas.databinding.FragmentStartBinding;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +26,7 @@ import com.example.m5juegopreguntas.databinding.FragmentStartBinding;
  */
 public class QuestionFragment extends Fragment {
     private FragmentQuestionBinding mBinding;
+    TextView etname;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -52,10 +61,14 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
+                String name = bundle.getString("name");
+                etname.setText("Hola "+name);
+
+            }
+        });
     }
 
     @Override
@@ -63,8 +76,54 @@ public class QuestionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentQuestionBinding.inflate(inflater,container,false);
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
 
-        mBinding.bienvenido.setText("Hola, ");
+        mBinding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mBinding.rbFace.isChecked()==true){
+                    fragmentTransaction.replace(R.id.fragmentQuestion,WinnerFragment.newInstance("Hola","Hola"));
+                    fragmentTransaction.commit();
+                    mBinding.button.setVisibility(View.GONE);
+                    mBinding.imageView2.setVisibility(View.GONE);
+                    mBinding.radiogroup.setVisibility(View.GONE);
+                    mBinding.bienvenido.setVisibility(View.GONE);
+                } else if (mBinding.rbi.isChecked()==true) {
+                    fragmentTransaction.replace(R.id.fragmentQuestion,LoserFragment.newInstance("Hola","Hola"));
+                    fragmentTransaction.commit();
+                    mBinding.button.setVisibility(View.GONE);
+                    mBinding.imageView2.setVisibility(View.GONE);
+                    mBinding.radiogroup.setVisibility(View.GONE);
+                    mBinding.bienvenido.setVisibility(View.GONE);
+
+                }else if (mBinding.rbw.isChecked()==true) {
+                    fragmentTransaction.replace(R.id.fragmentQuestion,LoserFragment.newInstance("Hola","Hola"));
+                    fragmentTransaction.commit();
+                    mBinding.button.setVisibility(View.GONE);
+                    mBinding.imageView2.setVisibility(View.GONE);
+                    mBinding.radiogroup.setVisibility(View.GONE);
+                    mBinding.bienvenido.setVisibility(View.GONE);
+
+                }else if (mBinding.rbt.isChecked()==true) {
+                    fragmentTransaction.replace(R.id.fragmentQuestion,LoserFragment.newInstance("Hola","Hola"));
+                    fragmentTransaction.commit();
+                    mBinding.button.setVisibility(View.GONE);
+                    mBinding.imageView2.setVisibility(View.GONE);
+                    mBinding.radiogroup.setVisibility(View.GONE);
+                    mBinding.bienvenido.setVisibility(View.GONE);
+
+                }
+
+            }
+        });
         return mBinding.getRoot();
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle saverdInstanceState){
+        super.onViewCreated(view,saverdInstanceState);
+        etname=view.findViewById(R.id.bienvenido);
+
+
     }
 }
